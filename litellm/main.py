@@ -847,6 +847,7 @@ def completion(  # type: ignore # noqa: PLR0915
         - If 'mock_response' is provided, a mock completion response is returned for testing or debugging.
     """
     ### VALIDATE Request ###
+    
     if model is None:
         raise ValueError("model param not passed in.")
     # validate messages
@@ -1073,6 +1074,7 @@ def completion(  # type: ignore # noqa: PLR0915
         if dynamic_api_key is not None:
             api_key = dynamic_api_key
         # check if user passed in any of the OpenAI optional params
+        # deka get_optional_params
         optional_params = get_optional_params(
             functions=functions,
             function_call=function_call,
@@ -1177,7 +1179,7 @@ def completion(  # type: ignore # noqa: PLR0915
                 mock_timeout=mock_timeout,
                 timeout=timeout,
             )
-
+        # deka azure 
         if custom_llm_provider == "azure":
             # azure configs
             ## check dynamic params ##
@@ -1263,6 +1265,7 @@ def completion(  # type: ignore # noqa: PLR0915
                         optional_params[k] = v
 
                 ## COMPLETION CALL
+                # deka azure completion
                 response = azure_chat_completions.completion(
                     model=model,
                     messages=messages,

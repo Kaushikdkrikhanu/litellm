@@ -402,6 +402,7 @@ def convert_to_model_response_object(  # noqa: PLR0915
                     and tool_calls is not None
                     and len(tool_calls) == 1
                 ):
+                    # deka how is this even correct? only function arguments? 
                     # to support 'json_schema' logic on older models
                     json_mode_content_str: Optional[str] = tool_calls[0][
                         "function"

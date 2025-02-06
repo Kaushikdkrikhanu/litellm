@@ -2721,6 +2721,7 @@ def get_optional_params(  # noqa: PLR0915
     optional_params: Dict = {}
 
     common_auth_dict = litellm.common_cloud_provider_auth_params
+    # deka map_special_auth_params
     if custom_llm_provider in common_auth_dict["providers"]:
         """
         Check if params = ["project", "region_name", "token"]
@@ -3519,6 +3520,7 @@ def get_optional_params(  # noqa: PLR0915
                 or get_secret("AZURE_API_VERSION")
                 or litellm.AZURE_DEFAULT_API_VERSION
             )
+            # deka map_openai_params
             optional_params = litellm.AzureOpenAIConfig().map_openai_params(
                 non_default_params=non_default_params,
                 optional_params=optional_params,

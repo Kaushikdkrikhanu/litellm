@@ -524,6 +524,7 @@ class AzureChatCompletion(BaseLLM):
                         "api_base": api_base,
                     },
                 )
+                # deka convert_to_model_response_object
                 return convert_to_model_response_object(
                     response_object=stringified_response,
                     model_response_object=model_response,
