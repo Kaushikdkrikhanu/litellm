@@ -6,6 +6,7 @@ import uuid
 from typing import Dict, Iterable, List, Literal, Optional, Union
 
 import litellm
+from litellm.constants import RESPONSE_FORMAT_TOOL_NAME
 from litellm._logging import verbose_logger
 from litellm.types.utils import (
     ChatCompletionDeltaToolCall,
@@ -400,7 +401,8 @@ def convert_to_model_response_object(  # noqa: PLR0915
                 if (
                     convert_tool_call_to_json_mode
                     and tool_calls is not None
-                    and len(tool_calls) == 1
+                    and len(tool_calls) == 1 
+                    and tool_calls[0]["function"]["name"] == RESPONSE_FORMAT_TOOL_NAME
                 ):
                     # deka how is this even correct? only function arguments? 
                     # to support 'json_schema' logic on older models
